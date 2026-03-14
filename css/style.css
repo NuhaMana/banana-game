@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #84fab0);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card {
+    width: 90%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.card h1, .card h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card p {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 10px;
+    background: #6c5ce7;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.03);
+    background: #574bdb;
+}
+
+a {
+    text-decoration: none;
+    color: #6c5ce7;
+    font-weight: bold;
+}
+
+img {
+    max-width: 100%;
+    margin: 20px 0;
+    border-radius: 15px;
+}
+
+.top-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 16px;
+    background: #00b894;
+    color: white;
+    border-radius: 10px;
+}
+
+.top-btn:hover {
+    background: #009874;
+}
+
+table {
+    width: 90%;
+    max-width: 800px;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+    color: #222;
+}
+
+th {
+    background: #6c5ce7;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f4f4f4;
+}
+
+.gold {
+    background: gold !important;
+    font-weight: bold;
+}
+
+.silver {
+    background: silver !important;
+    font-weight: bold;
+}
+
+.bronze {
+    background: #cd7f32 !important;
+    color: white;
+    font-weight: bold;
+}
+
+.page-wrap {
+    width: 100%;
+    text-align: center;
+    padding: 30px 15px;
+}
