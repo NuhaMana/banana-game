@@ -15,7 +15,7 @@ $user_id = $_SESSION['user_id'];
     <title>Banana Puzzle Game</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="game-body">
     <div id="game-container" style="text-align:center; margin-top:50px;">
         <h1>Banana Puzzle Game</h1>
         <p>Score: <span id="score">0</span></p>
