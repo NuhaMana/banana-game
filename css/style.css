@@ -140,3 +140,14 @@ tr:nth-child(even) {
     text-align: center;
     padding: 30px 15px;
 }
+
+#timer-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ff7f50); 
+    transition: width 1s linear;
+    border-radius: 12px;
+}
+#timer-text {
+    color: white;
+    font-size: 18px;
+}
