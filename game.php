@@ -20,6 +20,9 @@ $user_id = $_SESSION['user_id'];
     <div id="game-container" style="text-align:center; margin-top:50px;">
         <h1>Banana Puzzle Game</h1>
         <p>Score: <span id="score">0</span></p>
+        <div id="timer-container" style="margin: 10px 0; font-size: 18px; font-weight: bold;">
+    Time Left: <span id="timer">20</span>s
+</div>
         <img id="puzzle-img" src="" alt="Banana Puzzle" style="max-width:400px; border-radius:10px; margin-bottom:20px;">
         <br>
         <input type="number" id="user-answer" placeholder="Enter your answer">
@@ -30,11 +33,29 @@ $user_id = $_SESSION['user_id'];
     </div>
 
 <script>
+let timerDuration = 20; // seconds per puzzle
+let timer;   
 let score = 0;
 let correctAnswer = null;
 
 // Fetch puzzle from PHP Banana API bridge
 function loadPuzzle(){
+    function startTimer() {
+    clearInterval(timer);       // stop previous timer
+    let timeLeft = timerDuration;
+    document.getElementById('timer').innerText = timeLeft;
+
+    timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById('timer').innerText = timeLeft;
+
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            document.getElementById('feedback').innerText = "Time's up! Next puzzle.";
+            loadPuzzle();  // load next puzzle automatically
+        }
+    }, 1000);
+}
     fetch('php/fetch_banana.php')
         .then(res => res.json())
         .then(data => {
@@ -48,6 +69,7 @@ function loadPuzzle(){
             }
         })
         .catch(err => console.error(err));
+        startTimer();
 }
 
 document.getElementById('submit-btn').addEventListener('click', () => {
@@ -67,6 +89,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         score += 1;
         document.getElementById('feedback').innerText = "Correct! 🎉";
         document.getElementById('score').innerText = score;
+        clearInterval(timer);
 
         // Save score
         fetch('save_score.php', {
