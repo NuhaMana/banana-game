@@ -59,14 +59,14 @@ function loadPuzzle() {
             const img = document.getElementById('puzzle-img');
             correctAnswer = parseInt(data.solution);
 
-            // ✅ Log the correct answer immediately when puzzle loads
+            
             console.log("Correct answer for this puzzle:", correctAnswer);
 
             img.src = data.question;
             document.getElementById('user-answer').value = '';
             document.getElementById('feedback').innerText = '';
 
-            // Start timer only after image loads
+            
             img.onload = function() {
                 startTimer();
             };
@@ -77,7 +77,7 @@ function loadPuzzle() {
         });
 }
 
-// Timer function
+
 function startTimer() {
     clearInterval(timer); 
     let timeLeft = timerDuration;
@@ -108,7 +108,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     }
 
     const userAns = Number(userInput);
-    clearInterval(timer); // stop timer immediately
+    clearInterval(timer); 
 
     console.log("User answer:", userAns, "Correct answer:", correctAnswer); // testing
 
@@ -117,7 +117,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         document.getElementById('feedback').innerText = "Correct! 🎉";
         document.getElementById('score').innerText = score;
 
-        // Save score
+        
         fetch('save_score.php', {
             method: 'POST',
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
@@ -131,11 +131,11 @@ document.getElementById('submit-btn').addEventListener('click', () => {
         document.getElementById('feedback').innerText = "Wrong! Try next puzzle.";
     }
 
-    // Load next puzzle after 1 second delay
+    
     setTimeout(loadPuzzle, 1000);
 });
 
-// Load first puzzle on page load
+
 loadPuzzle();
 </script>
 
