@@ -7,7 +7,7 @@
 body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
-    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a18cd1, #84fab0);
+    background: linear-gradient(-45deg, #ff9a9e, #e76440, #390ca0, #0c4c24);
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
     display: flex;
