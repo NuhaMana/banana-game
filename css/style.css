@@ -1,3 +1,4 @@
+/* ==================== Reset & Base ==================== */
 * {
     margin: 0;
     padding: 0;
@@ -5,33 +6,36 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(-45deg, #ff9a9e, #e76440, #390ca0, #0c4c24);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling glitches */
+    background: linear-gradient(45deg, #47e81a, #bcf20d, #48fb07, #0e9f54);
+    background-size: 600% 600%;
+    animation: bgGlow 25s ease infinite;
+    position: relative;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-.card {
+/* ==================== Card ==================== */
+.card, #game-container {
     width: 90%;
     max-width: 420px;
-    background: rgba(255, 255, 255, 0.92);
+    margin: 50px auto; /* center vertically with top margin */
+    background: rgba(255, 255, 255, 0.95); /* semi-transparent for emoji visibility */
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
     text-align: center;
+    position: relative;
+    z-index: 10; /* keep card above animated objects */
 }
 
+#game-container {
+    width: 500px;
+    padding: 40px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+/* ==================== Text ==================== */
 .card h1, .card h2 {
     margin-bottom: 20px;
     color: #333;
@@ -65,7 +69,7 @@ button {
 }
 
 button:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     background: #574bdb;
 }
 
@@ -81,6 +85,7 @@ img {
     border-radius: 15px;
 }
 
+/* ==================== Top Buttons ==================== */
 .top-btn {
     display: inline-block;
     margin-top: 15px;
@@ -94,6 +99,7 @@ img {
     background: #009874;
 }
 
+/* ==================== Table ==================== */
 table {
     width: 90%;
     max-width: 800px;
@@ -135,67 +141,130 @@ tr:nth-child(even) {
     font-weight: bold;
 }
 
-.page-wrap {
-    width: 100%;
-    text-align: center;
-    padding: 30px 15px;
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative;
 }
 
+/* ==================== Timer ==================== */
 #timer-bar {
     height: 100%;
-    background: linear-gradient(90deg, #ffd700, #ff7f50); 
+    background: linear-gradient(90deg, #7a1b0e, #ff7f50); 
     transition: width 1s linear;
     border-radius: 12px;
 }
+
 #timer-text {
-    color: white;
+    color: rgb(23, 22, 22);
     font-size: 18px;
-}
-
-.game-body{
-    margin:0;
-    padding:0;
-    font-family: Arial, sans-serif;
-    height:100vh;
-
-    background: linear-gradient(-45deg, #4facfe, #00f2fe, #6a11cb, #2575fc);
-    background-size: 400% 400%;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    animation: gradientMove 12s ease infinite;
-}
-
-@keyframes gradientMove{
-    0%{background-position:0% 50%;}
-    50%{background-position:100% 50%;}
-    100%{background-position:0% 50%;}
-}
-
-#game-container{
-    background:white;
-    padding:40px;
-    border-radius:20px;
-    width:500px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.2);
 }
 
 #puzzle-img{
     max-width:300px;
 }
 
-button{
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    background:#4c6ef5;
-    color:white;
-    font-weight:bold;
-    cursor:pointer;
+/* ==================== Animated Objects ==================== */
+/* Emoji objects */
+.bg-object {
+    position: absolute;
+    font-size: 36px;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.95;
+    
+    text-shadow:
+        0 0 6px #fff,
+        0 0 12px #ffd700,
+        0 0 18px #ffea00; /* gives glow effect */
+    
+    animation:
+        floatSwirl 4s ease-in-out infinite alternate,
+        sparkle 3s ease-in-out infinite;
 }
 
-button:hover{
-    background:#364fc7;
+/* Background gradient shift */
+@keyframes bgGlow {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+@keyframes floatSwirl {
+    0%   { transform: translate(0,0) scale(1) rotate(0deg); }
+    25%  { transform: translate(2px,-3px) scale(1.1) rotate(20deg); }
+    50%  { transform: translate(-2px,2px) scale(0.95) rotate(-15deg); }
+    75%  { transform: translate(1px,-2px) scale(1.05) rotate(10deg); }
+    100% { transform: translate(0,0) scale(1) rotate(0deg); }
+}
+
+
+@keyframes sparkle{
+    0%{
+        filter:brightness(1);
+    }
+    50%{
+        filter:brightness(1.5);
+    }
+    100%{
+        filter:brightness(1);
+    }
+}
+
+
+/* GOLD PARTICLES */
+
+.gold-particle{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+
+    background: radial-gradient(circle, #f03405 0%, #ffd700 60%, #ffb300 100%);
+    
+    box-shadow:
+        0 0 6px #ffd700,
+        0 0 12px #ffd900,
+        0 0 18px #ffea00;
+
+    opacity:0.9;
+
+    animation: goldFloat 6s linear infinite;
+}
+
+/* floating motion */
+
+@keyframes goldFloat{
+
+    0%{
+        transform:translateY(0px) scale(0.8);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    50%{
+        transform:translateY(-20px) scale(1);
+    }
+
+    100%{
+        transform:translateY(-40px) scale(0.6);
+        opacity:0;
+    }
+
+}
+
+.card {
+    z-index: 10; /* above background emojis */
+    width: 400px;
+    max-width: 90%;
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    text-align: center;
 }
