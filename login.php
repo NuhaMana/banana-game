@@ -36,6 +36,7 @@ if (isset($_POST['login'])) {
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <div id="bg-login"></div>
     <div class="card">
         <h2>Login</h2>
         <p><?php echo $message; ?></p>
@@ -46,5 +47,50 @@ if (isset($_POST['login'])) {
         </form>
         <p><a href="register.php">Don't have an account? Register</a></p>
     </div>
+
+<script>
+   function spawnBackgroundEmojis(page){
+
+    const emojiSets={
+        login:["🍌","🍌","🍌","🐒"],
+        register:["🍌","🍌","🍌","🐒","🌴"],
+        dashboard:["🍌","🍌","🍌","🍌","🐒","🌴","🍍"],
+        game:["🍌","🍌","🍌","🍌","➕","➗","🐒"]
+    };
+
+    const emojis=emojiSets[page]||["🍌","🍌","🐒"];
+
+    const rows=6;
+    const cols=10;
+
+    const cellWidth=window.innerWidth/cols;
+    const cellHeight=window.innerHeight/rows;
+
+    for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+
+            const obj=document.createElement("div");
+            obj.className="bg-object";
+
+            obj.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+            const x=(c*cellWidth)+(Math.random()*cellWidth*0.6);
+            const y=(r*cellHeight)+(Math.random()*cellHeight*0.6);
+
+            obj.style.left=x+"px";
+            obj.style.top=y+"px";
+
+            obj.style.fontSize=(32+Math.random()*26)+"px";
+
+            obj.style.animationDuration=(3+Math.random()*3)+"s";
+            obj.style.animationDelay=(Math.random()*2)+"s";
+
+            document.body.appendChild(obj);
+        }
+    }
+}
+
+spawnBackgroundEmojis("login"); // change per page
+</script> 
 </body>
 </html>
