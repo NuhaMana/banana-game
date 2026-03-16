@@ -13,6 +13,10 @@ body {
     background-size: 600% 600%;
     animation: bgGlow 25s ease infinite;
     position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 /* ==================== Card ==================== */
@@ -40,6 +44,7 @@ body {
     margin-bottom: 20px;
     color: #333;
 }
+
 
 .card p {
     color: #555;
@@ -86,17 +91,62 @@ img {
 }
 
 /* ==================== Top Buttons ==================== */
+.home-title{
+    font-size: 64px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow:
+        0 0 10px gold,
+        0 0 20px gold,
+        0 0 40px orange;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+#home-card{
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(45deg, #09be12, #051803);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    text-align: center;
+    margin: 50px auto; /* keeps it centered below title */
+}
+
+
+#home-text {
+    color: #ffcc00; /* bright yellow-orange */
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+#extra-buttons{
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-around; /* spreads buttons horizontally */
+}
+
 .top-btn {
     display: inline-block;
     margin-top: 15px;
-    padding: 10px 16px;
-    background: #00b894;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ed5a05, #fda085);
     color: white;
-    border-radius: 10px;
+    border-radius: 12px;
+    transition: 0.3s;
 }
 
 .top-btn:hover {
     background: #009874;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
 
 /* ==================== Table ==================== */

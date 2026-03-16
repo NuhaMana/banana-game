@@ -5,12 +5,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="card">
-        <h1>🍌 Banana Math Puzzle</h1>
-        <p>Solve fun banana image puzzles and climb the leaderboard!</p>
-        <a href="register.php"><button>Register</button></a>
+    
+    <!-- Glowing title above card -->
+    <h1 class="home-title">🍌 Banana Puzzle 🍌</h1>
+
+    <!-- Center card with main actions -->
+    <div class="card" id="home-card">
+        <p id="home-text">
+            Test your brain with fun banana math puzzles!  
+            Solve puzzles before time runs out and climb the leaderboard.
+        </p>
+
         <a href="login.php"><button>Login</button></a>
+        <a href="register.php"><button>Create Account</button></a>
     </div>
+
+    <!-- Extra buttons outside the card -->
+    <div id="extra-buttons">
+        <a href="leaderboard.php"><button class="top-btn">🏆 View Leaderboard</button></a>
+        <a href="instructions.php"><button class="top-btn">📜 How To Play</button></a>
+    </div>
+
 
     <script>
    function spawnBackgroundEmojis(page){
