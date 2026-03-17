@@ -20,7 +20,7 @@ $user_id = $_SESSION['user_id'];
 
     <div id="game-container" class="card">
         <h1>Banana Puzzle Game</h1>
-        <p>Score: <span id="score">0</span></p>
+        <p>Score: <span id="score">0</span> | Level: <span id="level">1</span></p>
 
         <!-- Timer -->
         <div id="timer-container">
@@ -46,6 +46,23 @@ let timerDuration = 20;
 let timer;
 let score = 0;
 let correctAnswer = null;
+
+function updateLevel() {
+    let level = 1;
+
+    if(score >= 10) level = 4;
+    else if(score >= 6) level = 3;
+    else if(score >= 3) level = 2;
+
+    document.getElementById("level").innerText = level;
+
+    // update timer based on level
+    if(level === 1) timerDuration = 20;
+    if(level === 2) timerDuration = 15;
+    if(level === 3) timerDuration = 10;
+    if(level === 4) timerDuration = 7;
+}
+
 
 // Load puzzle and start timer only after image loads
 function loadPuzzle() {
@@ -153,7 +170,8 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     console.log("User answer:", userAns, "Correct answer:", correctAnswer);
 
     if(userAns === correctAnswer){
-        score++;
+        score += 1;
+        updateLevel();
         document.getElementById('feedback').innerText = "Correct! 🎉";
         document.getElementById('score').innerText = score;
 
@@ -170,6 +188,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {
 });
 
 // Load first puzzle
+updateLevel();
 loadPuzzle();
 </script>
 </body>
