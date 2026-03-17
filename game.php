@@ -20,7 +20,11 @@ $user_id = $_SESSION['user_id'];
 
     <div id="game-container" class="card">
         <h1>Banana Puzzle Game</h1>
-        <p>Score: <span id="score">0</span> | Level: <span id="level">1</span></p>
+        <p>
+        Score: <span id="score">0</span> | 
+        Level: <span id="level">1</span> | 
+        Lives: <span id="lives">3</span>
+    </p>
 
         <!-- Timer -->
         <div id="timer-container">
@@ -45,7 +49,12 @@ $user_id = $_SESSION['user_id'];
 let timerDuration = 20;
 let timer;
 let score = 0;
+let lives = 3;
 let correctAnswer = null;
+
+function updateLives(){
+    document.getElementById("lives").innerText = lives;
+}
 
 function updateLevel() {
     let level = 1;
@@ -62,6 +71,8 @@ function updateLevel() {
     if(level === 3) timerDuration = 10;
     if(level === 4) timerDuration = 7;
 }
+
+
 
 
 // Load puzzle and start timer only after image loads
@@ -106,13 +117,25 @@ function startTimer() {
         document.getElementById('timer-text').innerText = "Time Left: " + timeLeft + "s";
         document.getElementById('timer-bar').style.width = (timeLeft / timerDuration * 100) + "%";
 
-        if(timeLeft <= 0){
-            clearInterval(timer);
-            document.getElementById('feedback').innerText = "Time's up! Next puzzle.";
-            setTimeout(loadPuzzle, 1000);
-        }
+        if (timeLeft <= 0) {
+    clearInterval(timer);
+
+    lives--;
+    updateLives();
+
+    document.getElementById('feedback').innerText = "Time's up! ⏰";
+
+    if(lives <= 0){
+        gameOver();
+        return;
+    }
+
+    setTimeout(loadPuzzle, 1000);
+}
     }, 1000);
 }
+
+
 
 function spawnBackgroundEmojis(page){
 
@@ -180,15 +203,38 @@ document.getElementById('submit-btn').addEventListener('click', () => {
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
             body: 'score=' + score
         }).then(res => res.text()).then(console.log);
-    } else {
-        document.getElementById('feedback').innerText = "Wrong! Try next puzzle.";
+        setTimeout(loadPuzzle, 1000);
+    } else {    
+        lives--;
+        updateLives();
+
+    document.getElementById('feedback').innerText = "Wrong! 😢";
+
+    if(lives <= 0){
+        gameOver();
+        return;
     }
 
     setTimeout(loadPuzzle, 1000);
+}
 });
 
+
+
+function gameOver(){
+    clearInterval(timer);
+
+    document.getElementById("game-container").innerHTML = `
+        <h1 style="color: gold;">🍌 Game Over 🍌</h1>
+    <p style="font-size:20px;">Final Score: <b>${score}</b></p>
+        <button onclick="location.reload()">Play Again 🔁</button>
+        <br><br>
+        <a href="index.php" class="top-btn">🏠 Back to Home </a>
+    `;
+}
 // Load first puzzle
 updateLevel();
+updateLives();
 loadPuzzle();
 </script>
 </body>
