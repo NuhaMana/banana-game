@@ -33,12 +33,19 @@ include "php/db.php";
             $rank = 1;
             while ($row = $result->fetch_assoc()) {
                 $class = "";
+                if(isset($_SESSION['username']) && $_SESSION['username'] == $row['username']){
+                    $class = "current-player";
+                }
                 if ($rank == 1) $class = "gold";
                 elseif ($rank == 2) $class = "silver";
                 elseif ($rank == 3) $class = "bronze";
 
                 echo "<tr class='$class'>";
-                echo "<td>$rank</td>";
+                $medal = $rank;
+                if($rank == 1) $medal = "🥇";
+                elseif($rank == 2) $medal = "🥈";
+                elseif($rank == 3) $medal = "🥉";
+                echo "<td>$medal</td>";
                 echo "<td>" . htmlspecialchars($row['username']) . "</td>";
                 echo "<td>" . $row['best_score'] . "</td>";
                 echo "<td>" . $row['played_at'] . "</td>";

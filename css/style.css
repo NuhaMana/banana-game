@@ -151,24 +151,25 @@ img {
 
 /* ==================== Table ==================== */
 table {
-    width: 90%;
+    width: 80%;
     max-width: 800px;
-    margin: 30px auto;
+    margin: auto;
     border-collapse: collapse;
     background: white;
+    backdrop-filter: blur(10px);
     border-radius: 15px;
     overflow: hidden;
 }
 
 th, td {
-    padding: 14px;
+    padding: 12px;
     text-align: center;
     color: #222;
 }
 
 th {
-    background: #6c5ce7;
-    color: white;
+    background: rgba(0,0,0,0.6);
+    color: #ffd700;
 }
 
 tr:nth-child(even) {
@@ -189,6 +190,13 @@ tr:nth-child(even) {
     background: #cd7f32 !important;
     color: white;
     font-weight: bold;
+}
+
+
+.current-player {
+    background: rgba(255, 255, 255, 0.25);
+    font-weight: bold;
+    transform: scale(1.02);
 }
 
 .page-wrapper {
