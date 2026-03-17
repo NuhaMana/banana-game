@@ -23,8 +23,11 @@
     <!-- Extra buttons outside the card -->
     <div id="extra-buttons">
         <a href="leaderboard.php"><button class="top-btn">🏆 View Leaderboard</button></a>
-        <a href="instructions.php"><button class="top-btn">📜 How To Play</button></a>
+        <a href="instructions.php"><button class="top-btn">🏆 How To Play</button></a>
     </div>
+
+
+    
 
 
     <script>
@@ -91,6 +94,9 @@ function spawnGoldParticles(){
 
 spawnBackgroundEmojis("index"); // change per page
 setInterval(spawnGoldParticles,300);
-</script> 
+
+
+
+</script>
 </body>
 </html>
