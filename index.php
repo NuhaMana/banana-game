@@ -20,13 +20,28 @@
         <a href="register.php"><button>Create Account</button></a>
     </div>
 
-    <!-- Extra buttons outside the card -->
+    <!--  buttons outside the card -->
     <div id="extra-buttons">
         <a href="leaderboard.php"><button class="top-btn">🏆 View Leaderboard</button></a>
-        <a href="instructions.php"><button class="top-btn">🏆 How To Play</button></a>
+        <a href="#" onclick="openHowToPlay(); return false;">
+        <button class="top-btn">📘 How To Play</button>
+</a>
     </div>
 
-
+<div id="howToPlayModal" class="modal">
+    <div class="modal-content">
+        <span id="closeModal">&times;</span>
+        <h2>🍌 How to Play</h2>
+        <p>
+            Solve banana math puzzles.<br><br>
+            Enter the correct number before time runs out.<br>
+            Each correct answer increases score.<br>
+            Levels make the timer faster.<br>
+            You have 3 lives.<br><br>
+            Game ends when lives reach 0.
+        </p>
+    </div>
+</div>
     
 
 
@@ -95,7 +110,23 @@ function spawnGoldParticles(){
 spawnBackgroundEmojis("index"); // change per page
 setInterval(spawnGoldParticles,300);
 
+function openHowToPlay(){
+    document.getElementById("howToPlayModal").style.display = "flex";
+}
 
+window.onload = function(){
+
+    document.getElementById("closeModal").onclick = function(){
+        document.getElementById("howToPlayModal").style.display = "none";
+    };
+
+    window.onclick = function(e){
+        if(e.target.id === "howToPlayModal"){
+            document.getElementById("howToPlayModal").style.display = "none";
+        }
+    };
+
+};
 
 </script>
 </body>

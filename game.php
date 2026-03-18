@@ -112,7 +112,7 @@ function startTimer() {
     document.getElementById('timer-text').innerText = "Time Left: " + timeLeft + "s";
     document.getElementById('timer-bar').style.width = "100%";
 
-    timer = setInterval(() => {
+    timer = setInterval(() => {  //event driven arc   timer event
         timeLeft--;
         document.getElementById('timer-text').innerText = "Time Left: " + timeLeft + "s";
         document.getElementById('timer-bar').style.width = (timeLeft / timerDuration * 100) + "%";
@@ -130,7 +130,7 @@ function startTimer() {
         return;
     }
 
-    setTimeout(loadPuzzle, 1000);
+    setTimeout(loadPuzzle, 1000); //event driven architecture 
 }
     }, 1000);
 }
@@ -180,7 +180,7 @@ function spawnBackgroundEmojis(page){
 spawnBackgroundEmojis("game"); // change per page
 
 // Submit answer
-document.getElementById('submit-btn').addEventListener('click', () => {
+document.getElementById('submit-btn').addEventListener('click', () => {   //event driven arc btn click event
     const userInput = document.getElementById('user-answer').value.trim();
     if(userInput === ""){
         alert("Please enter an answer!");

@@ -18,7 +18,7 @@ if (isset($_POST['login'])) {
 
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
+            $_SESSION['username'] = $user['username']; //virtual identity
             header("Location: dashboard.php");
             exit();
         } else {

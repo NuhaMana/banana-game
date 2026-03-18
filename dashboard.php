@@ -13,8 +13,11 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="card">
-        <h1>Welcome</h1>
-        <p>You are logged in.</p>
+        <h2 style="color:purple;">     
+    Welcome back, <?php echo htmlspecialchars($_SESSION['username']); ?> 🍌   <!--  virtual identity -->
+</h2>
+        <p style="color:#f03405;">
+        You are logged in.</p>
         <a href="game.php"><button>Play Banana Game</button></a>
         <a href="leaderboard.php"><button>View Leaderboard</button></a>
         <a href="logout.php"><button>Logout</button></a>

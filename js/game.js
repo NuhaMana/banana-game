@@ -3,7 +3,7 @@ let score = 0;
 
 async function loadQuestion() {
     try {
-        let response = await fetch("php/fetch_banana.php");
+        let response = await fetch("php/fetch_banana.php"); //int
         let data = await response.json();
 
         if (data.error) {
