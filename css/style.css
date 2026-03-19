@@ -13,10 +13,6 @@ body {
     background-size: 600% 600%;
     animation: bgGlow 25s ease infinite;
     position: relative;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
 }
 
 /* ==================== Card ==================== */
@@ -44,7 +40,6 @@ body {
     margin-bottom: 20px;
     color: #333;
 }
-
 
 .card p {
     color: #555;
@@ -91,91 +86,39 @@ img {
 }
 
 /* ==================== Top Buttons ==================== */
-.home-title{
-    font-size: 64px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow:
-        0 0 10px gold,
-        0 0 20px gold,
-        0 0 40px orange;
-    text-align: center;
-    margin-top: 50px;
-}
-
-
-#home-card{
-    width: 90%;
-    max-width: 400px;
-    background: linear-gradient(45deg, #09be12, #051803);
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-    text-align: center;
-    margin: 50px auto; /* keeps it centered below title */
-}
-
-
-#home-text {
-    color: #ffcc00; /* bright yellow-orange */
-    font-weight: bold;
-    font-size: 20px;
-}
-
-
-#extra-buttons{
-    width: 90%;
-    max-width: 500px;
-    margin: 30px auto;
-    display: flex;
-    justify-content: space-around; /* spreads buttons horizontally */
-}
-
 .top-btn {
     display: inline-block;
     margin-top: 15px;
-    padding: 14px 20px;
-    font-size: 18px;
-    font-weight: bold;
-    background: linear-gradient(45deg, #ed5a05, #fda085);
+    padding: 10px 16px;
+    background: #00b894;
     color: white;
-    border-radius: 12px;
-    transition: 0.3s;
+    border-radius: 10px;
 }
 
 .top-btn:hover {
     background: #009874;
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
 }
-
-
-
-
-
-
 
 /* ==================== Table ==================== */
 table {
-    width: 80%;
+    width: 90%;
     max-width: 800px;
-    margin: auto;
+    margin: 30px auto;
     border-collapse: collapse;
     background: white;
-    backdrop-filter: blur(10px);
     border-radius: 15px;
     overflow: hidden;
 }
 
 th, td {
-    padding: 12px;
+    padding: 14px;
     text-align: center;
     color: #222;
 }
 
 th {
-    background: rgba(0,0,0,0.6);
-    color: #ffd700;
+    background: #6c5ce7;
+    color: white;
 }
 
 tr:nth-child(even) {
@@ -196,13 +139,6 @@ tr:nth-child(even) {
     background: #cd7f32 !important;
     color: white;
     font-weight: bold;
-}
-
-
-.current-player {
-    background: rgba(255, 255, 255, 0.25);
-    font-weight: bold;
-    transform: scale(1.02);
 }
 
 .page-wrapper {
@@ -331,46 +267,4 @@ tr:nth-child(even) {
     padding: 30px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     text-align: center;
-}
-
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 20;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: #fff8dc;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    width: 320px;
-    box-shadow: 0 0 20px gold;
-    animation: popupFade 0.5s ease;
-}
-
-
-@keyframes popupFade {
-    from {
-        transform: scale(0.6);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-#closeModal {
-    float: right;
-    cursor: pointer;
-    font-size: 20px;
 }

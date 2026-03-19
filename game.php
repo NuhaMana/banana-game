@@ -20,11 +20,7 @@ $user_id = $_SESSION['user_id'];
 
     <div id="game-container" class="card">
         <h1>Banana Puzzle Game</h1>
-        <p>
-        Score: <span id="score">0</span> | 
-        Level: <span id="level">1</span> | 
-        Lives: <span id="lives">3</span>
-    </p>
+        <p>Score: <span id="score">0</span></p>
 
         <!-- Timer -->
         <div id="timer-container">
@@ -49,31 +45,7 @@ $user_id = $_SESSION['user_id'];
 let timerDuration = 20;
 let timer;
 let score = 0;
-let lives = 3;
 let correctAnswer = null;
-
-function updateLives(){
-    document.getElementById("lives").innerText = lives;
-}
-
-function updateLevel() {
-    let level = 1;
-
-    if(score >= 10) level = 4;
-    else if(score >= 6) level = 3;
-    else if(score >= 3) level = 2;
-
-    document.getElementById("level").innerText = level;
-
-    // update timer based on level
-    if(level === 1) timerDuration = 20;
-    if(level === 2) timerDuration = 15;
-    if(level === 3) timerDuration = 10;
-    if(level === 4) timerDuration = 7;
-}
-
-
-
 
 // Load puzzle and start timer only after image loads
 function loadPuzzle() {
@@ -112,30 +84,18 @@ function startTimer() {
     document.getElementById('timer-text').innerText = "Time Left: " + timeLeft + "s";
     document.getElementById('timer-bar').style.width = "100%";
 
-    timer = setInterval(() => {  //event driven arc   timer event
+    timer = setInterval(() => {
         timeLeft--;
         document.getElementById('timer-text').innerText = "Time Left: " + timeLeft + "s";
         document.getElementById('timer-bar').style.width = (timeLeft / timerDuration * 100) + "%";
 
-        if (timeLeft <= 0) {
-    clearInterval(timer);
-
-    lives--;
-    updateLives();
-
-    document.getElementById('feedback').innerText = "Time's up! ⏰";
-
-    if(lives <= 0){
-        gameOver();
-        return;
-    }
-
-    setTimeout(loadPuzzle, 1000); //event driven architecture 
-}
+        if(timeLeft <= 0){
+            clearInterval(timer);
+            document.getElementById('feedback').innerText = "Time's up! Next puzzle.";
+            setTimeout(loadPuzzle, 1000);
+        }
     }, 1000);
 }
-
-
 
 function spawnBackgroundEmojis(page){
 
@@ -180,7 +140,7 @@ function spawnBackgroundEmojis(page){
 spawnBackgroundEmojis("game"); // change per page
 
 // Submit answer
-document.getElementById('submit-btn').addEventListener('click', () => {   //event driven arc btn click event
+document.getElementById('submit-btn').addEventListener('click', () => {
     const userInput = document.getElementById('user-answer').value.trim();
     if(userInput === ""){
         alert("Please enter an answer!");
@@ -193,8 +153,7 @@ document.getElementById('submit-btn').addEventListener('click', () => {   //even
     console.log("User answer:", userAns, "Correct answer:", correctAnswer);
 
     if(userAns === correctAnswer){
-        score += 1;
-        updateLevel();
+        score++;
         document.getElementById('feedback').innerText = "Correct! 🎉";
         document.getElementById('score').innerText = score;
 
@@ -203,38 +162,14 @@ document.getElementById('submit-btn').addEventListener('click', () => {   //even
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
             body: 'score=' + score
         }).then(res => res.text()).then(console.log);
-        setTimeout(loadPuzzle, 1000);
-    } else {    
-        lives--;
-        updateLives();
-
-    document.getElementById('feedback').innerText = "Wrong! 😢";
-
-    if(lives <= 0){
-        gameOver();
-        return;
+    } else {
+        document.getElementById('feedback').innerText = "Wrong! Try next puzzle.";
     }
 
     setTimeout(loadPuzzle, 1000);
-}
 });
 
-
-
-function gameOver(){
-    clearInterval(timer);
-
-    document.getElementById("game-container").innerHTML = `
-        <h1 style="color: gold;">🍌 Game Over 🍌</h1>
-    <p style="font-size:20px;">Final Score: <b>${score}</b></p>
-        <button onclick="location.reload()">Play Again 🔁</button>
-        <br><br>
-        <a href="index.php" class="top-btn">🏠 Back to Home </a>
-    `;
-}
 // Load first puzzle
-updateLevel();
-updateLives();
 loadPuzzle();
 </script>
 </body>
